@@ -1,6 +1,7 @@
 
 const passport = require('passport');
 const jwt = require('jsonwebtoken');
+require('dotenv/config');
 require("../services/LoginService")(passport);
 const catchAsync = require("../../utils/catchAsync");
 
@@ -14,13 +15,11 @@ class LoginController {
                 if (loginErr) {
                     return next(loginErr);
                 }
-                const key = 'minhtu';
-                const token = jwt.sign(user.toObject(), key);
-                console.log("token ",token)
+                const token = jwt.sign(user.username, process.env.TOKEN_SECRET);
                 res.cookie('jwt', token, {
-                    signed: true
+                    signed: false
                 });
-                return res.send({ success: true, message: 'authentication succeeded', username: user.username });
+                return res.send({ success: true, message: 'authentication succeeded', username: user.username, token });
             });
         })(req, res, next);
     })
