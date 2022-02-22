@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+body {
+    font-family: 'Roboto',sans-serif;
+}
+.backdrop-header {
+    background: url('../public/images/back-drop.png') no-repeat;
+    background-position: bottom center;
+    background-size: cover;
+    min-height: 560px;
+}
+#man_bg {
+	animation: ani 2s infinite alternate;
+}
+
+@keyframes ani{
+	0% {
+    transform: translateY(0px);
+ }
+	100% {
+    transform: translateY(25px);
+ }
+}
